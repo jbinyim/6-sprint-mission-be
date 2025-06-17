@@ -2,7 +2,7 @@ POST http://localhost:5050/signUp
 Content-Type: application/json
 
 {
-  "email": "test@test.com",
+  "email": "test3@test.com",
   "nickname": "test",
   "password": "1234"
 }
@@ -12,6 +12,10 @@ POST http://localhost:5050/login
 Content-Type: application/json
 
 {
-  "email": "test@test.com",
+  "email": "test2@test.com",
   "password": "1234"
 }
+
+###
+POST http://localhost:5050/token/refresh
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbWJ5bnFvd3EwMDAwdHh2Y3hqMWF2dzduIiwiaWF0IjoxNzUwMTQ1NzM3LCJleHAiOjE3NTEzNTUzMzd9.cl3V1TIqpPeNx3QKzneZEd4rgTmMlCZ0FpfN0J2drsI

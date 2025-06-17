@@ -1,7 +1,10 @@
 import { User } from "@prisma/client";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
+import { AppError } from "./AppError";
 
-export const createToken = (
+const JWT_SECRET = process.env.JWT_SECRET!;
+
+const createToken = (
   user: Omit<User, "password" | "refreshToken">,
   type?: "access" | "refresh"
 ) => {
@@ -12,3 +15,16 @@ export const createToken = (
 
   return token;
 };
+
+const verifyToken = (token: string) => {
+  try {
+    return jwt.verify(token, JWT_SECRET) as { userId: string };
+  } catch (error) {
+    if (error instanceof jwt.JsonWebTokenError) {
+      throw new AppError("Invalid token", 401);
+    }
+    throw error;
+  }
+};
+
+export default { createToken, verifyToken };

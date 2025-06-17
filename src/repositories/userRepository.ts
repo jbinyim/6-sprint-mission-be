@@ -32,4 +32,12 @@ const update = async (
   });
 };
 
-export default { findByEmail, save, update };
+const findById = async (id: User["id"]) => {
+  return prisma.user.findUnique({
+    where: {
+      id,
+    },
+  });
+};
+
+export default { findByEmail, save, update, findById };
