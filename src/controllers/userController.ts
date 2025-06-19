@@ -45,8 +45,8 @@ const login = async (
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      sameSite: "none",
-      secure: true,
+      sameSite: "lax",
+      secure: false,
     });
 
     res.status(200).json({ ...user, accessToken });
@@ -88,7 +88,10 @@ const refreshAccessToken = async (
     // 일치하면 새로운 엑세스 토큰 생성
     const newAccessToken = jwt.createToken(user, "access");
 
-    res.status(200).json({ accessToken: newAccessToken });
+    res.status(200).json({
+      accessToken: newAccessToken,
+      user: { id: user.id, email: user.email, nickname: user.nickname },
+    });
   } catch (e) {
     next(e);
   }

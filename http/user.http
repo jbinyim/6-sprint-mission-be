@@ -8,7 +8,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:5050/login
+POST http://localhost:5050/api/login
 Content-Type: application/json
 
 {
@@ -17,5 +17,5 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:5050/token/refresh
-Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbWJ5bnFvd3EwMDAwdHh2Y3hqMWF2dzduIiwiaWF0IjoxNzUwMTQ1NzM3LCJleHAiOjE3NTEzNTUzMzd9.cl3V1TIqpPeNx3QKzneZEd4rgTmMlCZ0FpfN0J2drsI
+POST http://localhost:5050/api/token/refresh
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbWMwYjhpbHUwMDAxdHhka2JzdHNpOXl2IiwiaWF0IjoxNzUwMzI2NzE5LCJleHAiOjE3NTE1MzYzMTl9.FIIzITzgvdpzOhln-D4ErFGQL8nD4bFjcWAxvZuAbS8
