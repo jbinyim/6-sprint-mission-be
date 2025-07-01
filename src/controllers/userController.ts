@@ -97,4 +97,27 @@ const refreshAccessToken = async (
   }
 };
 
-export default { createUser, login, refreshAccessToken };
+// 로그아웃 구현
+const logout = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const refreshToken = req.cookies.refreshToken;
+    if (refreshToken) {
+      const decoded = jwt.verifyToken(refreshToken) as { userId: string };
+      if (decoded) {
+        await userService.updateUser(decoded.userId, { refreshToken: null });
+      }
+    }
+
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: false,
+    });
+
+    res.status(200).json({ message: "로그아웃 성공" });
+  } catch (e) {
+    next(e);
+  }
+};
+
+export default { createUser, login, refreshAccessToken, logout };

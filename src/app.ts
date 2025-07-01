@@ -4,6 +4,7 @@ import router from "./router/indexRouter";
 import errorHandler from "./middlewares/errorHandler";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import path from "path";
 
 const PORT = process.env.PORT ?? 5050;
 
@@ -18,6 +19,8 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser());
+
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 app.use(router);
 
